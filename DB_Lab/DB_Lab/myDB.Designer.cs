@@ -30,6 +30,10 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dBTablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TableExpert = new System.Windows.Forms.ToolStripMenuItem();
+            this.TableExploration = new System.Windows.Forms.ToolStripMenuItem();
+            this.TableGemstone = new System.Windows.Forms.ToolStripMenuItem();
+            this.TableLaboratory = new System.Windows.Forms.ToolStripMenuItem();
             this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,9 +58,50 @@
             // 
             // dBTablesToolStripMenuItem
             // 
+            this.dBTablesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TableExpert,
+            this.TableExploration,
+            this.TableGemstone,
+            this.TableLaboratory});
             this.dBTablesToolStripMenuItem.Name = "dBTablesToolStripMenuItem";
             this.dBTablesToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.dBTablesToolStripMenuItem.Text = "DB Tables";
+            // 
+            // TableExpert
+            // 
+            this.TableExpert.Image = global::DB_Lab.Properties.Resources.scientist;
+            this.TableExpert.Name = "TableExpert";
+            this.TableExpert.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
+            this.TableExpert.Size = new System.Drawing.Size(224, 26);
+            this.TableExpert.Text = "Expert";
+            this.TableExpert.Click += new System.EventHandler(this.TableExpert_Click);
+            // 
+            // TableExploration
+            // 
+            this.TableExploration.Image = global::DB_Lab.Properties.Resources.explore;
+            this.TableExploration.Name = "TableExploration";
+            this.TableExploration.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
+            this.TableExploration.Size = new System.Drawing.Size(224, 26);
+            this.TableExploration.Text = "Exploration";
+            this.TableExploration.Click += new System.EventHandler(this.TableExploration_Click);
+            // 
+            // TableGemstone
+            // 
+            this.TableGemstone.Image = global::DB_Lab.Properties.Resources.gem;
+            this.TableGemstone.Name = "TableGemstone";
+            this.TableGemstone.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
+            this.TableGemstone.Size = new System.Drawing.Size(224, 26);
+            this.TableGemstone.Text = "Gemstone";
+            this.TableGemstone.Click += new System.EventHandler(this.TableGemstone_Click);
+            // 
+            // TableLaboratory
+            // 
+            this.TableLaboratory.Image = global::DB_Lab.Properties.Resources.lab_microscope;
+            this.TableLaboratory.Name = "TableLaboratory";
+            this.TableLaboratory.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
+            this.TableLaboratory.Size = new System.Drawing.Size(224, 26);
+            this.TableLaboratory.Text = "Laboratory";
+            this.TableLaboratory.Click += new System.EventHandler(this.TableLaboratory_Click);
             // 
             // administrationToolStripMenuItem
             // 
@@ -111,6 +156,10 @@
         private System.Windows.Forms.ToolStripMenuItem calculatorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutProgramToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem TableExpert;
+        private System.Windows.Forms.ToolStripMenuItem TableExploration;
+        private System.Windows.Forms.ToolStripMenuItem TableGemstone;
+        private System.Windows.Forms.ToolStripMenuItem TableLaboratory;
     }
 }
 

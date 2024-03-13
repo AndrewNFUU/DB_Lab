@@ -39,5 +39,29 @@ namespace DB_Lab
         {
             Application.Exit();
         }
+
+        private void TableExpert_Click(object sender, EventArgs e)
+        {
+            frmExpert f1 = new frmExpert();
+            f1 .ShowDialog();
+        }
+
+        private void TableExploration_Click(object sender, EventArgs e)
+        {
+            frmExploration f2 = new frmExploration();
+            f2.ShowDialog();
+        }
+
+        private void TableGemstone_Click(object sender, EventArgs e)
+        {
+            frmGemstone f3 = new frmGemstone();
+            f3.ShowDialog();
+        }
+
+        private void TableLaboratory_Click(object sender, EventArgs e)
+        {
+            frmLaboratory f4 = new frmLaboratory();
+            f4.ShowDialog();
+        }
     }
 }

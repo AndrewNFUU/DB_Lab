@@ -105,6 +105,11 @@ namespace DB_Lab
         {
             Application.Exit();
         }
+
+        private void LogIn_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     static class h

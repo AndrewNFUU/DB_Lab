@@ -62,6 +62,30 @@
     <Compile Include="Calculator.Designer.cs">
       <DependentUpon>Calculator.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmExpert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExpert.Designer.cs">
+      <DependentUpon>frmExpert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExploration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExploration.Designer.cs">
+      <DependentUpon>frmExploration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGemstone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGemstone.Designer.cs">
+      <DependentUpon>frmGemstone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLaboratory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLaboratory.Designer.cs">
+      <DependentUpon>frmLaboratory.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +106,18 @@
     <EmbeddedResource Include="Calculator.resx">
       <DependentUpon>Calculator.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmExpert.resx">
+      <DependentUpon>frmExpert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExploration.resx">
+      <DependentUpon>frmExploration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGemstone.resx">
+      <DependentUpon>frmGemstone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLaboratory.resx">
+      <DependentUpon>frmLaboratory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,17 +126,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -109,6 +146,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scientist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lab_microscope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\explore.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exploration1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lab1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
