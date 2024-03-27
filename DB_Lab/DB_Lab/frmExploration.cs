@@ -33,6 +33,13 @@ namespace DB_Lab
             h.bs1.Sort = dataGridView1.Columns[4].Name;
 
             DWGFormat();
+
+            DataTable dtBorder = new DataTable();
+            
+            dtBorder = h.myfunDt("SELECT MIN(date_of_exploration), MAX(date_of_exploration) FROM Exploration");
+
+            dateExplorationFrom.Value = Convert.ToDateTime(dtBorder.Rows[0][0].ToString());
+            dateExplorationTo.Value = Convert.ToDateTime(dtBorder.Rows[0][1].ToString());
         }
 
         void DWGFormat()
@@ -113,6 +120,57 @@ namespace DB_Lab
 
             for (int i = 0; i < dataGridView1.RowCount; i++)
                 dataGridView1.Rows[i].Selected = false;
+        }
+
+    private void groupBox1_Paint(object sender, PaintEventArgs e)
+    {
+      Graphics gfx = e.Graphics;
+      Pen p = new Pen(Color.AliceBlue, 1); // колір і товщина рамки
+
+      gfx.DrawLine(p, 0, 5, 5, 5); // верхня горизонтальна лінія до Text
+
+      gfx.DrawLine(p, 35, 5, e.ClipRectangle.Width - 2, 5); // верхня горизонтальна лінія після Text
+
+      gfx.DrawLine(p, 0, 5, 0, e.ClipRectangle.Height - 2); // верхня горизонтальна лінія до Text
+
+      gfx.DrawLine(p, e.ClipRectangle.Width - 2, 5,
+                      e.ClipRectangle.Width - 2,
+                      e.ClipRectangle.Height - 2); // права вертикаль
+
+      gfx.DrawLine(p, e.ClipRectangle.Width - 2,
+                      e.ClipRectangle.Height - 2, 0,
+                      e.ClipRectangle.Height - 2); // низ
+    }
+
+    private void btnFilter_Click(object sender, EventArgs e)
+    {
+      if (btnFilter.Checked)
+      {
+        this.Height = 450;
+        groupBox1.Visible = true;
+      }
+      else
+      {
+        this.Height = 320;
+        groupBox1.Visible = false;
+      }
+    }
+
+        private void btnFilterOk_Click(object sender, EventArgs e)
+        {
+            string strFilter = "";
+
+            strFilter += " (date_of_exploration >= '" + dateExplorationFrom.Value.ToString("yyyy-MM-dd") +
+                "'" + " AND date_of_exploration <= '" + dateExplorationTo.Value.ToString("yyyy-MM-dd") + "')";
+
+            MessageBox.Show(strFilter);
+
+            h.bs1.Filter = strFilter;
+        }
+
+        private void btnFilterCancel_Click(object sender, EventArgs e)
+        {
+            h.bs1.RemoveFilter();
         }
     }
 }

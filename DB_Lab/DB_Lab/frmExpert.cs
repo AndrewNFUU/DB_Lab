@@ -33,6 +33,35 @@ namespace DB_Lab
             h.bs1.Sort = "expert_name ASC";
 
             DWGFormat();
+
+            DataTable dtBorder = new DataTable();
+            DataTable dtDistinctRes = new DataTable();
+            DataTable dtDistinctPhone = new DataTable();
+            
+            dtBorder = h.myfunDt("SELECT MIN(salary), MAX(salary), MIN(hire_date), MAX(hire_date) FROM Expert");
+            dtDistinctRes = h.myfunDt("SELECT DISTINCT researches FROM Expert");
+            dtDistinctPhone = h.myfunDt("SELECT DISTINCT phone_number FROM Expert");
+
+            // Записую межі у відповідні елементи керування:
+            txtSalaryFrom.Text = dtBorder.Rows[0][0].ToString();
+            txtSalaryTo.Text = dtBorder.Rows[0][1].ToString();
+              
+            dateHireDtFrom.Value = Convert.ToDateTime(dtBorder.Rows[0][2].ToString());
+            dateHireDtTo.Value = Convert.ToDateTime(dtBorder.Rows[0][3].ToString());
+
+            // Визначаю перелік можливих значень текстового поля:
+            // cmbResearches.Items.Add("");
+            for (int i = 0; i < dtDistinctRes.Rows.Count; i++)
+            {
+                cmbResearches.Items.Add(dtDistinctRes.Rows[i][0].ToString());
+            }
+            cmbResearches.DropDownStyle = ComboBoxStyle.DropDownList; // заборона редагування comboBox
+
+            for (int i = 0; i < dtDistinctPhone.Rows.Count; i++)
+            {
+                cmbPhoneNum.Items.Add(dtDistinctPhone.Rows[i][0].ToString());
+            }
+            cmbPhoneNum.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         void DWGFormat()
@@ -139,9 +168,95 @@ namespace DB_Lab
                 dataGridView1.Rows[i].Selected = false;
         }
 
-        private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
-        {
+    private void groupBox1_Paint(object sender, PaintEventArgs e)
+    {
+      Graphics gfx = e.Graphics;
+      Pen p = new Pen(Color.AliceBlue, 1); // колір і товщина рамки
 
+      gfx.DrawLine(p, 0, 5, 5, 5); // верхня горизонтальна лінія до Text
+
+      gfx.DrawLine(p, 35, 5, e.ClipRectangle.Width - 2, 5); // верхня горизонтальна лінія після Text
+
+      gfx.DrawLine(p, 0, 5, 0, e.ClipRectangle.Height - 2); // верхня горизонтальна лінія до Text
+
+      gfx.DrawLine(p, e.ClipRectangle.Width - 2, 5,
+                      e.ClipRectangle.Width - 2, 
+                      e.ClipRectangle.Height - 2); // права вертикаль
+
+      gfx.DrawLine(p, e.ClipRectangle.Width - 2,
+                      e.ClipRectangle.Height - 2, 0,
+                      e.ClipRectangle.Height - 2); // низ
+    }
+
+    private void btnFilter_Click(object sender, EventArgs e)
+    {
+      if (btnFilter.Checked)
+      {
+        this.Height = 450;
+        groupBox1.Visible = true;
+      }
+      else
+      {
+        this.Height = 320;
+        groupBox1.Visible = false;
+      }
+    }
+
+        private void btnFilterOk_Click(object sender, EventArgs e)
+        {
+            string strFilter = "";
+            strFilter += "expert_id > 0";
+
+            // filer for expert_name
+            if (txtExpertName.Text != "")
+            {
+                strFilter += " AND expert_name LIKE '" + txtExpertName.Text + "%'";
+            }
+            
+            // filter for salary and hire_date
+            if ((txtSalaryFrom.Text != "") && (txtSalaryTo.Text != ""))
+            {
+                strFilter +=
+                    " AND (salary >= " + 
+                    txtSalaryFrom.Text.ToString().Replace(',', '.') +
+                    " AND salary <= " + 
+                    txtSalaryTo.Text.ToString().Replace(",", ".") + ")";
+            } 
+            else if ((txtSalaryFrom.Text == "") && (txtSalaryTo.Text != ""))
+            {
+                strFilter +=
+                    " AND (salary <= " + 
+                    txtSalaryTo.Text.ToString().Replace(",", ".") + ")";
+            }
+            else if ((txtSalaryFrom.Text != "") && (txtSalaryTo.Text == ""))
+            {
+                strFilter +=
+                    " AND (salary >= " +
+                    txtSalaryFrom.Text.ToString().Replace(',', '.');
+            }
+
+            strFilter += " AND (hire_date >= '" + dateHireDtFrom.Value.ToString("yyyy-MM-dd") + 
+                "'" + " AND hire_date <= '" + dateHireDtTo.Value.ToString("yyyy-MM-dd") + "')";
+
+            // filter for unique values of Researches
+            if (cmbResearches.Text != "")
+            {
+                strFilter += " AND (researches = '" + cmbResearches.Text + "')";
+            }
+
+            if (cmbPhoneNum.Text != "")
+            {
+                strFilter += " AND (phone_number = '" + cmbPhoneNum.Text + "')";
+            }
+
+            MessageBox.Show(strFilter);
+
+            h.bs1.Filter = strFilter;
+        }
+
+        private void btnFilterCancel_Click(object sender, EventArgs e)
+        {
+            h.bs1.RemoveFilter();
         }
     }
 }
